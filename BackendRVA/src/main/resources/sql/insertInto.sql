@@ -1,0 +1,47 @@
+INSERT INTO "liga" ("id", "naziv", "oznaka") VALUES (nextval('liga_seq'), 'English Premier League', 'PL');
+INSERT INTO "liga" ("id", "naziv", "oznaka") VALUES (nextval('liga_seq'), 'Ligue 1', 'L1');
+INSERT INTO "liga" ("id", "naziv", "oznaka") VALUES (nextval('liga_seq'), 'La Liga', 'LL');
+INSERT INTO "liga" ("id", "naziv", "oznaka") VALUES (nextval('liga_seq'), 'Serie A', 'SA');
+INSERT INTO "liga" ("id", "naziv", "oznaka") VALUES (nextval('liga_seq'), 'Bundesliga', 'BL');
+
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Španac', 'ESP');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Belgijanac', 'BEL');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Brazilac', 'BR');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Hrvat', 'CRO');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Portugalac', 'POR');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Agrentinac', 'ARG');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Francuz', 'FR');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Nemac', 'GER');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Poljak', 'POL');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Englez', 'ENG');
+INSERT INTO "nacionalnost" ("id", "naziv", "skracenica") VALUES (nextval('nacionalnost_seq'), 'Egipćanin', 'EGY');
+
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Manchester United', to_date('05.03.1878.', 'dd.mm.yyyy.'), 'Manchester', 1);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'PSG', to_date('12.08.1970.', 'dd.mm.yyyy.'), 'Paris', 2);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Real Madrid', to_date('06.03.1902.', 'dd.mm.yyyy.'), 'Madrid', 3);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Chelsea', to_date('10.03.1905.', 'dd.mm.yyyy.'), 'London', 1);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Juventus', to_date('01.11.1897.', 'dd.mm.yyyy.'), 'Torino', 4);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Barcelona', to_date('29.11.1899.', 'dd.mm.yyyy.'), 'Barcelona', 3);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'FC Bayern München', to_date('27.02.1900.', 'dd.mm.yyyy.'), 'München', 5);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Borussia Dortmund', to_date('19.12.1909.', 'dd.mm.yyyy.'), 'Dortmund', 5);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Liverpool', to_date('03.06.1892.', 'dd.mm.yyyy.'), 'Liverpool', 1);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Manchester City', to_date('16.04.1894.', 'dd.mm.yyyy.'), 'Manchester', 1);
+INSERT INTO "tim" ("id", "naziv", "osnovan", "sediste", "liga") VALUES (nextval('tim_seq'), 'Tottenham Hotspur', to_date('05.09.1882.', 'dd.mm.yyyy.'), 'London', 1);
+
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'David', 'De Gea', '123', to_date('07.11.1990.', 'dd.mm.yyyy.'), 1, 1);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Dani', 'Alves', '975', to_date('06.05.1983.', 'dd.mm.yyyy.'), 3, 2);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Marcelo', 'Vieira', '344', to_date('12.05.1988.', 'dd.mm.yyyy.'), 3, 3);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Sergio', 'Ramos', '234', to_date('30.03.1986.', 'dd.mm.yyyy.'), 1, 3);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), ' Raphael', 'Varane', '567', to_date('25.04.1993.', 'dd.mm.yyyy.'), 7, 3);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Eden', 'Hazard', '284', to_date('07.01.1991.', 'dd.mm.yyyy.'), 2, 4);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'NGolo', 'Kante', '676', to_date('29.03.1991.', 'dd.mm.yyyy.'), 7, 4);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Luka', 'Modrić', '453', to_date('09.09.1985.', 'dd.mm.yyyy.'), 4, 3);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Cristiano', 'Ronaldo', '451', to_date('05.02.1985.', 'dd.mm.yyyy.'), 5, 5);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Kylian', 'Mbappe', '127', to_date('20.12.1998.', 'dd.mm.yyyy.'), 7, 2);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Lionel', 'Messi', '125', to_date('24.06.1987.', 'dd.mm.yyyy.'), 6, 6);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Robert', 'Lewandowski', '120', to_date('21.08.1988.', 'dd.mm.yyyy.'), 9, 7);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Thomas', 'Muller', '464', to_date('13.09.1989.', 'dd.mm.yyyy.'), 8, 7);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Raheem', 'Sterling', '447', to_date('08.12.1994.', 'dd.mm.yyyy.'), 10, 10);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Mohamed', 'Salah', '944', to_date('15.06.1992.', 'dd.mm.yyyy.'), 11, 9);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Harry', 'Kane', '554', to_date('28.07.1993..', 'dd.mm.yyyy.'), 10, 11);
+INSERT INTO "igrac" ("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") VALUES (nextval('igrac_seq'), 'Marco', 'Reus', '674', to_date('31.05.1989.', 'dd.mm.yyyy.'), 8, 8);

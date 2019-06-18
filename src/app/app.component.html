@@ -1,0 +1,45 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="over" [fixedInViewport]="true" opened mode="side">
+    <mat-accordion>
+      <a mat-button style="text-align: center">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/home']">home</mat-icon>
+      </a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Aplikacija
+          </mat-panel-title>
+          <mat-panel-description>
+            Aplikacija za vođenje evidencije
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/tim']">Tim</a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/liga']">Liga</a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/nacionalnost']">Nacionalnost</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Informacije
+          </mat-panel-title>
+          <mat-panel-description>
+            Osnovne informacije o aplikaciji
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/about']">Pomoć</a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/author']">Autor</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

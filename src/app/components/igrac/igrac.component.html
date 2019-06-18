@@ -1,0 +1,66 @@
+<mat-toolbar class="toolbarNew" color="primary">
+  <span class="title-center">Igrač</span>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+  
+  <mat-form-field class="search">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretražite igrače">
+  </mat-form-field>
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+    <ng-container matColumnDef="ime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ime}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prezime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Prezime</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.prezime}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brojReg">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Broj registracije</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.brojReg}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="datumRodjenja">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Datum rođenja</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.datumRodjenja | date : "dd.MM.yyyy."}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nacionalnost">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nacionalnost</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nacionalnost.naziv}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="tim">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tim</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.tim.naziv}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" matTooltip="Dodajte novog igrača" matTooltipClass="example-tooltip-blue" (click)="openDialog(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="primary" matTooltip="Izmenite igrača"
+          (click)="openDialog(2, row.id, row.ime, row.prezime, row.brojReg, row.datumRodjenja, row.nacionalnost, row.tim)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Izbrišite igrača"
+          (click)="openDialog(3, row.id, row.ime, row.prezime, row.brojReg, row.datumRodjenja, row.nacionalnost, row.tim)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSize]="[5]" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"></mat-paginator>
+</div>
