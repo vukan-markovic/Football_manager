@@ -1,5 +1,5 @@
 {
-  "name": "football-database",
+  "name": "football-manager",
   "description": "Web Angular application for record data about football players and their nationallities, leagues and teams.",
   "keywords": [
     "CRUD",
@@ -9,7 +9,7 @@
     "update",
     "delete",
     "football",
-    "database",
+    "manager",
     "teams",
     "leagues",
     "players",
@@ -18,9 +18,8 @@
   "author": "Vukan Marković",
   "license": "MIT",
   "repository": {
-    "IT20-2016-Markovic-Vukan": "https://github.com/rva2019/IT20-2016-Markovic-Vukan"
+    "Football_manager": "https://github.com/Vukan-Markovic/Football_manager"
   },
-  "homepage": "https://footballdatabase.herokuapp.com/",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

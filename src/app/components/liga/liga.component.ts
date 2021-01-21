@@ -31,7 +31,6 @@ export class LigaComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
   }
 
   applyFilter(filterValue: string) {

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import rva.jpa.Igrac;
 import rva.reps.IgracRepository;
+import rva.reps.NacionalnostRepository;
 import rva.reps.TimRepository;
+import rva.dto.IgracDTO;
 
 @Api(tags = { "Igrač CRUD operacije" })
 @RestController
@@ -30,6 +31,9 @@ public class IgracRestController {
 
 	@Autowired
 	private TimRepository timRepository;
+
+	@Autowired
+	private NacionalnostRepository nacionalnostRepository;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -52,13 +56,13 @@ public class IgracRestController {
 		return igracRepository.findByImeContainingIgnoreCase(ime);
 	}
 
+	@ApiOperation(value = "Vraća kolekciju svih igrača iz baze podataka koji pripadaju timu sa id vrednosti koja je prosleđena kao path varijabla")
 	@GetMapping(value = "igraciZaTimId/{id}")
 	public Collection<Igrac> igracPoTimuId(@PathVariable("id") int id) {
 		return igracRepository.findByTim(timRepository.getOne(id));
 	}
 
 	@ApiOperation(value = "Briše igrača iz baze podataka čiji je id vrednost prosleđena kao path varijabla")
-	@CrossOrigin
 	@DeleteMapping("igrac/{id}")
 	public ResponseEntity<Igrac> deleteIgrac(@PathVariable("id") Integer id) {
 		if (!igracRepository.existsById(id))
@@ -71,23 +75,33 @@ public class IgracRestController {
 	}
 
 	@ApiOperation(value = "Upisuje igrača u bazu podataka")
-	@CrossOrigin
 	@PostMapping("igrac")
-	public ResponseEntity<Igrac> insertIgrac(@RequestBody Igrac igrac) {
+	public ResponseEntity<Igrac> insertIgrac(@RequestBody IgracDTO igrac) {
 		if (!igracRepository.existsById(igrac.getId())) {
-			igracRepository.save(igrac);
+			igracRepository.save(igracDTOtoEntity(igrac));
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 
 	@ApiOperation(value = "Modifikuje postojećeg igrača u bazi podataka")
-	@CrossOrigin
 	@PutMapping("igrac")
-	public ResponseEntity<Igrac> updateIgrac(@RequestBody Igrac igrac) {
+	public ResponseEntity<Igrac> updateIgrac(@RequestBody IgracDTO igrac) {
 		if (!igracRepository.existsById(igrac.getId()))
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		igracRepository.save(igrac);
+		igracRepository.save(igracDTOtoEntity(igrac));
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	private Igrac igracDTOtoEntity(IgracDTO igrac) {
+		Igrac persistentIgrac = new Igrac();
+		persistentIgrac.setBrojReg(igrac.getBrojReg());
+		persistentIgrac.setDatumRodjenja(igrac.getDatumRodjenja());
+		persistentIgrac.setId(igrac.getId());
+		persistentIgrac.setIme(igrac.getIme());
+		persistentIgrac.setNacionalnost(nacionalnostRepository.getOne(igrac.getNacionalnostId()));
+		persistentIgrac.setPrezime(igrac.getPrezime());
+		persistentIgrac.setTim(timRepository.getOne(igrac.getTimId()));
+		return persistentIgrac;
 	}
 }

@@ -27,7 +27,7 @@ export class IgracDialogComponent implements OnInit {
   }
 
   public compareTo(a: { id: any; }, b: { id: any; }) {
-    return a.id == b.id;
+    if (a != undefined && b != undefined && a != null && b != null) return a.id == b.id;
   }
 
   public add(): void {

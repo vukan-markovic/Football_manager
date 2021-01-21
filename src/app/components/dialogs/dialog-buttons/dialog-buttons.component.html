@@ -1,0 +1,9 @@
+<div mat-dialog-actions>
+  <button mat-raised-button color="accent" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()"
+    [disabled]="isValid">Sačuvaj</button>
+  <button mat-raised-button color="accent" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1" (click)="update()"
+    [disabled]="isValid">Sačuvaj</button>
+  <button mat-raised-button color="primary" *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"
+    (click)="delete()">Obriši</button>
+  <button mat-raised-button color="warn" (click)="cancel()" tabindex="-1">Poništi</button>
+</div>

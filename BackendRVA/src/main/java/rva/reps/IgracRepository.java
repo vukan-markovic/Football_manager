@@ -9,5 +9,6 @@ import rva.jpa.Tim;
 
 public interface IgracRepository extends JpaRepository<Igrac, Integer> {
 	Collection<Igrac> findByImeContainingIgnoreCase(String ime);
+
 	Collection<Igrac> findByTim(Tim t);
 }

@@ -1,44 +1,46 @@
 <mat-toolbar color="primary">
   <span class="title-center">Nacionalnost</span>
- </mat-toolbar>
- 
- <div class="container mat-elevation-z8">
-   
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+
   <mat-form-field class="search">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretražite nacionalnosti">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pretražite nacionalnosti">
   </mat-form-field>
 
   <mat-table #table [dataSource]="dataSource" class="mat-cell" matSort>
- 
+
     <ng-container matColumnDef="naziv">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Naziv</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.naziv}}</mat-cell>
     </ng-container>
- 
+
     <ng-container matColumnDef="skracenica">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Skraćenica</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.skracenica}}</mat-cell>
     </ng-container>
- 
+
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)" matTooltip="Dodajte novu nacionalnost">
           <mat-icon>add</mat-icon>
         </button>
       </mat-header-cell>
- 
+
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="primary" matTooltip="Izmenite nacionalnost" (click)="openDialog(2, row.id, row.naziv, row.skracenica)">
+        <button mat-icon-button color="primary" matTooltip="Izmenite nacionalnost"
+          (click)="openDialog(2, row.id, row.naziv, row.skracenica)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" matTooltip="Izbrišite nacionalnost" (click)="openDialog(3, row.id, row.naziv, row.skracenica)">
+        <button mat-icon-button color="primary" matTooltip="Izbrišite nacionalnost"
+          (click)="openDialog(3, row.id, row.naziv, row.skracenica)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
- 
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor: default" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
- </div>
+</div>

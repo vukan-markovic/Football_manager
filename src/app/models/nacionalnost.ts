@@ -1,5 +1,5 @@
 export class Nacionalnost {
-    id: number;
-    naziv: string;
-    skracenica: string;
+  id: number;
+  naziv: string;
+  skracenica: string;
 }

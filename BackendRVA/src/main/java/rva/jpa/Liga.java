@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * The persistent class for the liga database table.d
+ * The persistent class for the liga database table.
  */
 @Entity
 @NamedQuery(name = "Liga.findAll", query = "SELECT l FROM Liga l")
@@ -33,9 +33,6 @@ public class Liga implements Serializable {
 	@OneToMany(mappedBy = "liga")
 	@JsonIgnore
 	private List<Tim> timovi;
-
-	public Liga() {
-	}
 
 	public Integer getId() {
 		return this.id;

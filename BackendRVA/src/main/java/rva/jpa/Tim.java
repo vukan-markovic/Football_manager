@@ -37,7 +37,7 @@ public class Tim implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date osnovan;
 
-	// bi-directional many-to-one association to Igrac
+	// bi-directional one-to-many association to Igrac
 	@OneToMany(mappedBy = "tim")
 	@JsonIgnore
 	private List<Igrac> igraci;
@@ -46,9 +46,6 @@ public class Tim implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "liga")
 	private Liga liga;
-
-	public Tim() {
-	}
 
 	public Integer getId() {
 		return this.id;

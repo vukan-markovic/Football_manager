@@ -48,9 +48,6 @@ public class Igrac implements Serializable {
 	@JoinColumn(name = "tim")
 	private Tim tim;
 
-	public Igrac() {
-	}
-
 	public Integer getId() {
 		return this.id;
 	}

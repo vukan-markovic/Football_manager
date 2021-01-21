@@ -2,28 +2,24 @@
   <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje lige</h3>
   <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija lige: {{data.naziv}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 3">Brisanje lige: {{data.naziv}}</h3>
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  <form class="mat-dialog-content" #formControl="ngForm">
     <div class="form">
       <mat-form-field hintLabel="Maksimalno 100 karaktera">
-        <input matInput #input maxlength="100" placeholder="Naziv" [(ngModel)]="data.naziv" name="naziv" [disabled]="flag == 3" required>
+        <input matInput #input maxlength="100" placeholder="Naziv" [(ngModel)]="data.naziv" name="naziv"
+          [disabled]="flag == 3" required>
         <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field hintLabel="Maksimalno 50 karaktera">
-        <input matInput #input2 maxlength="50" placeholder="Oznaka" [(ngModel)]="data.oznaka" name="oznaka" [disabled]="flag == 3">
+        <input matInput #input2 maxlength="50" placeholder="Oznaka" [(ngModel)]="data.oznaka" name="oznaka"
+          [disabled]="flag == 3">
         <mat-hint align="end">{{input2.value?.length || 0}}/50</mat-hint>
       </mat-form-field>
     </div>
 
-    <div mat-dialog-actions>
-      <button mat-raised-button color="accent" *ngIf="flag == 1" [type]="submit" [mat-dialog-close]="1" (click)="add()"
-        [disabled]="!formControl.valid">Sačuvaj</button>
-      <button mat-raised-button color="accent" *ngIf="flag == 2" [type]="submit" [mat-dialog-close]="1" (click)="update()"
-        [disabled]="!formControl.valid">Sačuvaj</button>
-      <button mat-raised-button color="primary" *ngIf="flag == 3" [type]="submit" [mat-dialog-close]="1" (click)="delete()">Obriši</button>
-      <button mat-raised-button color="warn" (click)="cancel()" tabindex="-1">Poništi</button>
-    </div>
+    <app-dialog-buttons [flag]="flag" [isValid]="!formControl.valid" (addEvent)="add()" (updateEvent)="update()"
+      (deleteEvent)="delete()" (cancelEvent)="cancel()"> </app-dialog-buttons>
   </form>
 </div>

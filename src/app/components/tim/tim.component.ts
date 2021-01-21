@@ -37,16 +37,13 @@ export class TimComponent implements OnInit {
       };
 
       this.dataSource.sortingDataAccessor = (data, property) => {
-        switch (property) {
-          case 'liga': return data.liga.naziv.toLocaleLowerCase();
-          default: return data[property];
-        }
+        if (property == 'liga') return data.liga.naziv.toLocaleLowerCase();
+        else return data[property];
       };
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
   }
 
   public openDialog(flag: number, id: number, naziv: string, osnovan: Date, sediste: string, liga: Liga) {

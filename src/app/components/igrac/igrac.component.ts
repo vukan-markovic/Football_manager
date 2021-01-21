@@ -40,10 +40,8 @@ export class IgracComponent implements OnInit {
         };
 
         this.dataSource.sortingDataAccessor = (data, property) => {
-          switch (property) {
-            case 'nacionalnost': return data.nacionalnost.naziv.toLocaleLowerCase();
-            default: return data[property];
-          }
+          if (property == 'nacionalnost') return data.nacionalnost.naziv.toLocaleLowerCase();
+          else return data[property];
         };
 
         this.dataSource.paginator = this.paginator;

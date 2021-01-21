@@ -1,5 +1,5 @@
 export class Liga {
-    id: number;
-    naziv: string;
-    oznaka: string;
+  id: number;
+  naziv: string;
+  oznaka: string;
 }

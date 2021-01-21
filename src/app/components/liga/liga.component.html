@@ -28,10 +28,12 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="primary" matTooltip="Izmenite ligu" (click)="openDialog(2, row.id, row.naziv, row.oznaka)">
+        <button mat-icon-button color="primary" matTooltip="Izmenite ligu"
+          (click)="openDialog(2, row.id, row.naziv, row.oznaka)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
-        <button mat-icon-button color="primary" matTooltip="Izbrišite ligu" (click)="openDialog(3, row.id, row.naziv, row.oznaka)">
+        <button mat-icon-button color="primary" matTooltip="Izbrišite ligu"
+          (click)="openDialog(3, row.id, row.naziv, row.oznaka)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

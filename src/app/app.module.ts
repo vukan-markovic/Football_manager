@@ -9,7 +9,7 @@ import {
   MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatGridListModule,
   MatExpansionModule, MatTableModule, MatToolbarModule, MatOptionModule, MatSelectModule,
   MatSnackBarModule, MatDialogModule, MatInputModule, MatNativeDateModule,
-  MatCheckboxModule, MatDatepickerModule, MatPaginatorModule, MatSortModule, MatTooltipModule, 
+  MatCheckboxModule, MatDatepickerModule, MatPaginatorModule, MatSortModule, MatTooltipModule,
   MatStepperModule
 } from '@angular/material';
 import { IgracComponent } from './components/igrac/igrac.component';
@@ -28,17 +28,18 @@ import { TimDialogComponent } from './components/dialogs/tim-dialog/tim-dialog.c
 import { NacionalnostDialogComponent } from './components/dialogs/nacionalnost-dialog/nacionalnost-dialog.component';
 import { LigaDialogComponent } from './components/dialogs/liga-dialog/liga-dialog.component';
 import { IgracDialogComponent } from './components/dialogs/igrac-dialog/igrac-dialog.component';
+import { DialogButtonsComponent } from './components/dialogs/dialog-buttons/dialog-buttons.component';
 
 const Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'igrac', component: IgracComponent, data: { title: 'Igrac' }},
-  { path: 'nacionalnost', component: NacionalnostComponent, data: { title: 'Nacionalnost' }},
-  { path: 'tim', component: TimComponent, data: { title: 'Tim' }},
-  { path: 'liga', component: LigaComponent, data: { title: 'Liga' }},
-  { path: 'home', component: HomeComponent, data: { title: 'Home' }},
-  { path: 'about', component: AboutComponent, data: { title: 'About' }},
-  { path: 'author', component: AuthorComponent, data: { title: 'Author' }},
-  { path: '**', component: PageNotFoundComponent , data: { title: 'Invalid path'} }
+  { path: 'igrac', component: IgracComponent, data: { title: 'Igrac' } },
+  { path: 'nacionalnost', component: NacionalnostComponent, data: { title: 'Nacionalnost' } },
+  { path: 'tim', component: TimComponent, data: { title: 'Tim' } },
+  { path: 'liga', component: LigaComponent, data: { title: 'Liga' } },
+  { path: 'home', component: HomeComponent, data: { title: 'Home' } },
+  { path: 'about', component: AboutComponent, data: { title: 'About' } },
+  { path: 'author', component: AuthorComponent, data: { title: 'Author' } },
+  { path: '**', component: PageNotFoundComponent, data: { title: 'Invalid path' } }
 ];
 
 @NgModule({
@@ -54,8 +55,8 @@ const Routes = [
     PageNotFoundComponent,
     TimDialogComponent,
     NacionalnostDialogComponent,
-    LigaDialogComponent, 
-    IgracDialogComponent
+    LigaDialogComponent,
+    IgracDialogComponent, DialogButtonsComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +88,7 @@ const Routes = [
   entryComponents: [
     TimDialogComponent,
     NacionalnostDialogComponent,
-    LigaDialogComponent, 
+    LigaDialogComponent,
     IgracDialogComponent
   ],
   providers: [LigaService, IgracService, TimService, NacionalnostService],

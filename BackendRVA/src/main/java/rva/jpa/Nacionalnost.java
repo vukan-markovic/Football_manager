@@ -34,9 +34,6 @@ public class Nacionalnost implements Serializable {
 	@JsonIgnore
 	private List<Igrac> igraci;
 
-	public Nacionalnost() {
-	}
-
 	public Integer getId() {
 		return this.id;
 	}

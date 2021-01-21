@@ -21,12 +21,12 @@ export class NacionalnostComponent implements OnInit {
     this.nacionalnostService.getAllNacionalnost().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sortingDataAccessor = (data, property) => {
-         return data[property].toLocaleLowerCase();
+        return data[property].toLocaleLowerCase();
       };
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
 
   ngOnInit() {

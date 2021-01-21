@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import rva.dto.TimDTO;
 import rva.jpa.Tim;
+import rva.reps.LigaRepository;
 import rva.reps.TimRepository;
 
 @Api(tags = { "Tim CRUD operacije" })
@@ -27,6 +28,9 @@ public class TimRestController {
 
 	@Autowired
 	private TimRepository timRepository;
+
+	@Autowired
+	private LigaRepository ligaRepository;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -51,37 +55,44 @@ public class TimRestController {
 
 	@ApiOperation(value = "Briše tim iz baze podataka čiji je id vrednost prosleđena kao path varijabla")
 	@Transactional
-	@CrossOrigin
 	@DeleteMapping("tim/{id}")
 	public ResponseEntity<Tim> deleteTim(@PathVariable("id") Integer id) {
 		if (!timRepository.existsById(id))
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		timRepository.deleteById(id);
-		jdbcTemplate.execute("delete from igrac where tim = " + id);
+		jdbcTemplate.update("delete from igrac where tim = ?", id);
 		if (id == -100)
-			jdbcTemplate.execute(
-					"INSERT INTO \"tim\" (\"id\", \"naziv\", \"osnovan\", \"sediste\", \"liga\") VALUES (-100, 'Test Naziv', to_date('01.01.1991.', 'dd.mm.yyyy.'), 'Test Sediste', 1)");
+			jdbcTemplate.execute("INSERT INTO \"tim\" (\"id\", \"naziv\", \"osnovan\", \"sediste\", \"liga\") "
+					+ "VALUES (-100, 'Test Naziv', to_date('01.01.1991.', 'dd.mm.yyyy.'), 'Test Sediste', 1)");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "Upisuje tim u bazu podataka")
-	@CrossOrigin
 	@PostMapping("tim")
-	public ResponseEntity<Tim> insertTim(@RequestBody Tim tim) {
+	public ResponseEntity<Tim> insertTim(@RequestBody TimDTO tim) {
 		if (!timRepository.existsById(tim.getId())) {
-			timRepository.save(tim);
+			timRepository.save(timDTOtoEntity(tim));
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 
 	@ApiOperation(value = "Modifikuje postojeći tim u bazi podataka")
-	@CrossOrigin
 	@PutMapping("tim")
-	public ResponseEntity<Tim> updateTim(@RequestBody Tim tim) {
+	public ResponseEntity<Tim> updateTim(@RequestBody TimDTO tim) {
 		if (!timRepository.existsById(tim.getId()))
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		timRepository.save(tim);
+		timRepository.save(timDTOtoEntity(tim));
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	private Tim timDTOtoEntity(TimDTO tim) {
+		Tim persistentTim = new Tim();
+		persistentTim.setId(tim.getId());
+		persistentTim.setLiga(ligaRepository.getOne(tim.getLigaId()));
+		persistentTim.setNaziv(tim.getNaziv());
+		persistentTim.setOsnovan(tim.getOsnovan());
+		persistentTim.setSediste(tim.getSediste());
+		return persistentTim;
 	}
 }
